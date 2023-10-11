@@ -13,13 +13,23 @@ namespace net_il_mio_fotoalbum.Models.DatabaseModels
         public string Name { get; set; }
 
 
-        [Required(ErrorMessage = "This field is mandatory")]
-        [MaxLength(1000, ErrorMessage = $"The name must not exceed 1000 characters")]
+        [Required(ErrorMessage = "This field is mandatory")]        
         [Column(TypeName = "text")]        
         public string Description { get; set; }
 
         [Required(ErrorMessage = "This field is mandatory")]
         public bool IsVisible { get; set; }
+
+        // image to upload
+        [Required(ErrorMessage = "This field is mandatory")]
+        public byte[] ImageFile { get; set; }
+
+        // MIME type of the image so the user can upload many types of images
+        
+        public string MimeType { get; set; }
+
+        public string ImageSrc => $"data:{MimeType};base64,{Convert.ToBase64String(ImageFile)}";
+
 
         // relation N:N with Category
         public List<Category>? Categories { get; set; }
