@@ -19,6 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Views\Category\" />
+    <Folder Include="Views\Picture\Partials\" />
     <Folder Include="wwwroot\css\compiled\" />
   </ItemGroup>
 

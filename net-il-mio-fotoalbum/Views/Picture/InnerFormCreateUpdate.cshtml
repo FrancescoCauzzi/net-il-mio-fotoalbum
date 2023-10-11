@@ -1,0 +1,44 @@
+﻿@using net_il_mio_fotoalbum.Models
+
+@model PictureFormModel
+@Html.AntiForgeryToken()
+<div class="mb-3">
+
+    <label for="Name"><strong>Name:</strong></label>
+    <input asp-for="Picture.Name" class="d-block w-100" />
+    <span asp-validation-for="Picture.Name" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label for="Description"><strong>Description:</strong></label>
+    <textarea asp-for="Picture.Description" rows="8" class="d-block w-100"></textarea>
+    <span asp-validation-for="Picture.Description" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="ImageFormFile">Image file</label>
+    <input type="file" asp-for="ImageFormFile" />
+    <span asp-validation-for="ImageFormFile" class="text-error"></span>
+</div>
+<div class="form-check mb-3">
+    <input type="checkbox" asp-for="Picture.IsVisible" class="form-check-input" id="isVisibleCheckbox">
+    <label class="form-check-label" for="isVisibleCheckbox"><strong>IsVisible</strong></label>
+    <span asp-validation-for="Picture.IsVisible" class="text-danger"></span>
+</div>
+
+
+<!-- Multiple select for the categories -->
+@*
+
+<div class="mb-3">
+    <label for="Categories"><strong>Categories:</strong></label>
+    <select asp-for="SelectedCategoriesId"
+            multiple="multiple"
+            size="10"
+            class="form-control mb-2 mr-sm-2 ml-sm-3 leftList"
+            asp-items="@Model.Categories">
+    </select>
+</div>
+*@
+
+<div class="text-end">
+    <input type="submit" class="btn btn-small btn-info" value="Save">
+</div>

@@ -2,6 +2,8 @@ using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using net_il_mio_fotoalbum.Database;
+using net_il_mio_fotoalbum.Models;
+using net_il_mio_fotoalbum.Models.DatabaseModels;
 
 namespace net_il_mio_fotoalbum
 {
@@ -23,6 +25,18 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
             // this setting helps in avoiding infinite loops during JSON serialization when there are circular references in your data structures, which is a common scenario when you have related entities in your models. (N:N, 1:N relationships)
             builder.Services.AddControllers().AddJsonOptions(x =>
                             x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+
+            // DEPENDENCY INJECTIONS
+            // DI for the database
+            builder.Services.AddScoped<FotoAlbumContext, FotoAlbumContext>();
+
+            // DI repository pattern
+            builder.Services.AddScoped<IRepository<Picture,PictureFormModel>, RepositoryPicture>();
+
+
+
+
+            // DEPENDENCY INJECTIONS Above
 
             var app = builder.Build();
 

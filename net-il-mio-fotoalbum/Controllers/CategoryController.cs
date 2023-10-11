@@ -1,46 +1,29 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using net_il_mio_fotoalbum.Database;
-using net_il_mio_fotoalbum.Models;
-using net_il_mio_fotoalbum.Models.DatabaseModels;
-
-using Microsoft.EntityFrameworkCore;
-
 
 namespace net_il_mio_fotoalbum.Controllers
 {
-    public class PictureController : Controller
+    public class CategoryController : Controller
     {
-        private readonly IRepository<Picture, PictureFormModel> _repositoryPicture;
-
-        public PictureController(IRepository<Picture, PictureFormModel> repositoryPicture)
-        {
-            _repositoryPicture = repositoryPicture;
-        }
-        // GET: PictureController
+        // GET: CategoryController
         public ActionResult Index()
         {
             return View();
         }
 
-        // GET: PictureController/Details/5
+        // GET: CategoryController/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: PictureController/Create
+        // GET: CategoryController/Create
         public ActionResult Create()
         {
-            var model = new PictureFormModel
-            {
-                Categories = new List<SelectListItem> { /*... populate your categories here ...*/ }
-            };
-            return View("Create");
+            return View();
         }
 
-        // POST: PictureController/Create
+        // POST: CategoryController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
@@ -51,17 +34,17 @@ namespace net_il_mio_fotoalbum.Controllers
             }
             catch
             {
-                return View("Create");
+                return View();
             }
         }
 
-        // GET: PictureController/Edit/5
+        // GET: CategoryController/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: PictureController/Edit/5
+        // POST: CategoryController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -76,14 +59,13 @@ namespace net_il_mio_fotoalbum.Controllers
             }
         }
 
-        // GET: PictureController/Delete/5
+        // GET: CategoryController/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: PictureController/Delete/5
-        /*
+        // POST: CategoryController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
@@ -97,7 +79,5 @@ namespace net_il_mio_fotoalbum.Controllers
                 return View();
             }
         }
-        */
-        
     }
 }

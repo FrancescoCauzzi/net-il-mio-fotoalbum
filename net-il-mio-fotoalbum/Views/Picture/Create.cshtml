@@ -1,0 +1,22 @@
+﻿@model net_il_mio_fotoalbum.Models.PictureFormModel
+@{
+    
+}
+
+
+<div class="__create-form-ctn">
+    <div class="__post-form-ctn d-flex flex-column">
+        <h1>Insert a new picture</h1>
+        <form asp-controller="Picture" asp-action="Create" method="post">
+            @await Html.PartialAsync("InnerFormCreateUpdate")
+
+        </form>
+            @* common part 
+            
+        @await Html.PartialAsync("~/Views/Shared/GoBackButtons")
+            *@
+
+
+    </div>
+
+</div>
