@@ -1,0 +1,33 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    $header-height: 60px;
+    $footer-height: 50px;
+
+    header {
+        height: $header-height;
+    }
+
+    main {
+        background-color: gray;
+        height: calc(100vh - ($header-height + $footer-height));
+    }
+
+    footer {
+        height: $footer-height;
+    }
+}
