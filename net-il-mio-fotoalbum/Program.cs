@@ -1,4 +1,7 @@
 using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using net_il_mio_fotoalbum.Database;
 
 namespace net_il_mio_fotoalbum
 {
@@ -7,6 +10,12 @@ namespace net_il_mio_fotoalbum
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            var connectionString = builder.Configuration.GetConnectionString("FotoAlbumContextConnection") ?? throw new InvalidOperationException("Connection string 'FotoAlbumContextConnection' not found.");
+
+             builder.Services.AddDbContext<FotoAlbumContext>();
+                                                                    
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                    .AddEntityFrameworkStores<FotoAlbumContext>();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
