@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using net_il_mio_fotoalbum.Models.DatabaseModels;
+
 namespace net_il_mio_fotoalbum.Database
 {
     public class FotoAlbumContext : IdentityDbContext<IdentityUser>
@@ -11,5 +13,8 @@ namespace net_il_mio_fotoalbum.Database
             "Integrated Security=True;TrustServerCertificate=True");
         }
 
+        public DbSet<Picture> Pictures { get; set; }
+
+        public DbSet<Category> Categories { get; set; }
     }
 }
