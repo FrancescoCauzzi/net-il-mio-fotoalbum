@@ -30,6 +30,9 @@ namespace net_il_mio_fotoalbum
 
             app.UseRouting();
 
+            // authentication line in our setup, REMEMBER !!!
+            app.UseAuthentication();
+
             app.UseAuthorization();
 
             app.MapControllerRoute(
