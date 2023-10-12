@@ -12,11 +12,14 @@ namespace net_il_mio_fotoalbum.Controllers
 {
     public class PictureController : Controller
     {
-        private readonly IRepository<Picture, PictureFormModel> _repositoryPicture;
+        private IRepository<Picture, PictureFormModel> _repositoryPicture;
+        private IRepository<Category, CategoryFormModel> _repositoryCategory;
 
-        public PictureController(IRepository<Picture, PictureFormModel> repositoryPicture)
+
+        public PictureController(IRepository<Picture, PictureFormModel> repositoryPicture, IRepository<Category, CategoryFormModel> repositoryCategory)
         {
             _repositoryPicture = repositoryPicture;
+            _repositoryCategory = repositoryCategory;
         }
         // GET: PictureController
         public ActionResult Index()
@@ -33,17 +36,36 @@ namespace net_il_mio_fotoalbum.Controllers
         // GET: PictureController/Create
         public ActionResult Create()
         {
-            var model = new PictureFormModel
+            List<SelectListItem> allCategoriesSelectList = new List<SelectListItem>();
+            List<Category> databaseAllCategories = _repositoryCategory.GetAll();
+
+            foreach (Category Category in databaseAllCategories)
             {
-                Categories = new List<SelectListItem> { /*... populate your categories here ...*/ }
+                allCategoriesSelectList.Add(
+                    new SelectListItem
+                    {
+                        Text = Category.Name,
+                        Value = Category.Id.ToString()
+                    });
+            }
+
+            PictureFormModel formModel = new PictureFormModel
+            {
+                Picture = new Picture(),
+                Categories = allCategoriesSelectList
             };
-            return View("Create");
+
+
+            return View("Create", formModel);
+
+
+
         }
 
         // POST: PictureController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(PictureFormModel formModel)
         {
             try
             {
@@ -98,6 +120,6 @@ namespace net_il_mio_fotoalbum.Controllers
             }
         }
         */
-        
+
     }
 }

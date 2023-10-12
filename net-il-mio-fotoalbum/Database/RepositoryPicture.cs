@@ -93,5 +93,10 @@ namespace net_il_mio_fotoalbum.Database
         {
             throw new NotImplementedException();
         }
+
+        List<Picture> IRepository<Picture, PictureFormModel>.GetAll()
+        {
+            return _db.Pictures.ToList();
+        }
     }
 }

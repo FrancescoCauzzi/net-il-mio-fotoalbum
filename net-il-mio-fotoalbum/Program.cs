@@ -14,10 +14,10 @@ namespace net_il_mio_fotoalbum
             var builder = WebApplication.CreateBuilder(args);
             var connectionString = builder.Configuration.GetConnectionString("FotoAlbumContextConnection") ?? throw new InvalidOperationException("Connection string 'FotoAlbumContextConnection' not found.");
 
-             builder.Services.AddDbContext<FotoAlbumContext>();
-                                                                    
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                    .AddEntityFrameworkStores<FotoAlbumContext>();
+            builder.Services.AddDbContext<FotoAlbumContext>();
+
+            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                                .AddEntityFrameworkStores<FotoAlbumContext>();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
@@ -31,7 +31,10 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
             builder.Services.AddScoped<FotoAlbumContext, FotoAlbumContext>();
 
             // DI repository pattern
-            builder.Services.AddScoped<IRepository<Picture,PictureFormModel>, RepositoryPicture>();
+            builder.Services.AddScoped<IRepository<Picture, PictureFormModel>, RepositoryPicture>();
+            // DI repository pattern
+            builder.Services.AddScoped<IRepository<Category, CategoryFormModel>, RepositoryCategory>();
+
 
 
 

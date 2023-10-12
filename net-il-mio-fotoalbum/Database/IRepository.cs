@@ -22,6 +22,7 @@ namespace net_il_mio_fotoalbum.Database
     */
     public interface IRepository<T, TFormModel>
     {
+        List<T> GetAll();
         // Get entities by name (or some other criteria, which might vary by entity type)
         List<T> GetEntities(string criteria);
         // Get a single entity by ID
@@ -32,6 +33,10 @@ namespace net_il_mio_fotoalbum.Database
         bool ModifyEntity(int id, TFormModel formModel);
         // Delete an entity
         bool DeleteEntity(int id);
+        // Get All Entities of one type
+        
+
+
     }
 
 }
