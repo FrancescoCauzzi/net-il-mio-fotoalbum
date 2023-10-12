@@ -48,15 +48,13 @@
                 <div class="__detail-btn-ctn d-flex gap-2 ">
 
                     <a href="@Url.Action("Update", "picture", new { id = Model.Id })" class="btn btn-primary p-2 __edit-icon">
-                        @*
+                        @**@
                         <i class=" fa-regular fa-pen-to-square"></i>
 
-                        *@
                     </a>
-                    @*
+                    @**@
                     @await Html.PartialAsync("DeleteFormPartial")
 
-                    *@
 
                 </div>
             }

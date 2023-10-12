@@ -20,9 +20,7 @@
             <div class="d-flex justify-content-center  p-3 __picture-container">
                 @foreach (var picture in Model)
                 {
-                    <div class="card d-flex flex-column __picture-card">
-
-                        @*src='@(!string.IsNullOrEmpty(picture.ImageUrl) ? picture.ImageUrl : "/images/default_picture.png")'*@
+                    <div class="card d-flex flex-column __picture-card">                        
 
                         <img class="card-img-top" src="@picture.ImageSrc" alt="picture image">
                         <div class="card-body">
@@ -34,12 +32,11 @@
                                 @if (User.IsInRole("ADMIN"))
                                 {
 
-                                    <a href="@Url.Action("Update", "Picture", new { name = picture.Name })" class="btn btn-primary">Edit</a>
+                                    <a href="@Url.Action("Update", "Picture", new { id = picture.Id })" class="btn btn-primary">Edit</a>
 
-                                    @*Delete form
+                                    @*Delete form*@
 
                                     @await Html.PartialAsync("DeleteFormPartial", picture)
-                                    *@
                                 }
 
                             </div>
