@@ -1,14 +1,27 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using net_il_mio_fotoalbum.Database;
+using net_il_mio_fotoalbum.Models.DatabaseModels;
+using net_il_mio_fotoalbum.Models;
 
 namespace net_il_mio_fotoalbum.Controllers
 {
     public class CategoryController : Controller
     {
+        
+        private IRepository<Category, CategoryFormModel> _repositoryCategory;
+
+
+        public CategoryController(IRepository<Category, CategoryFormModel> repositoryCategory)
+        {            
+            _repositoryCategory = repositoryCategory;
+        }
         // GET: CategoryController
         public ActionResult Index()
         {
-            return View();
+            List<Category> categories = _repositoryCategory.GetAll();
+
+            return View("Index", categories);
         }
 
         // GET: CategoryController/Details/5
