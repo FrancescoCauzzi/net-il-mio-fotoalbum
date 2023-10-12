@@ -63,7 +63,7 @@ namespace net_il_mio_fotoalbum.Database
             }
             else
             {
-                throw new Exception("This pizza has not been found");
+                throw new Exception("This category has not been found");
             }
         }
 

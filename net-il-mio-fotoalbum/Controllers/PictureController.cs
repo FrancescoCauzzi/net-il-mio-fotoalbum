@@ -6,10 +6,11 @@ using net_il_mio_fotoalbum.Models;
 using net_il_mio_fotoalbum.Models.DatabaseModels;
 
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.AspNetCore.Authorization;
 
 namespace net_il_mio_fotoalbum.Controllers
 {
+    [Authorize(Roles = "ADMIN,USER")]
     public class PictureController : Controller
     {
         private IRepository<Picture, PictureFormModel> _repositoryPicture;
@@ -46,7 +47,7 @@ namespace net_il_mio_fotoalbum.Controllers
             return View("Details",foundedPicture);
 
         }
-
+        [Authorize(Roles = "ADMIN")]
         // GET: PictureController/Create
         public ActionResult Create()
         {
@@ -77,6 +78,7 @@ namespace net_il_mio_fotoalbum.Controllers
         }
 
         // POST: PictureController/Create
+        [Authorize(Roles = "ADMIN")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(PictureFormModel formModel)
@@ -142,6 +144,7 @@ namespace net_il_mio_fotoalbum.Controllers
         }
 
         // GET: PictureController/Edit/5
+        [Authorize(Roles = "ADMIN")]
         public ActionResult Update(int id)
         {
             try
@@ -200,6 +203,7 @@ namespace net_il_mio_fotoalbum.Controllers
         }
 
         // POST: PictureController/Edit/5
+        [Authorize(Roles = "ADMIN")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Update(int id, PictureFormModel formModel)
@@ -263,6 +267,7 @@ namespace net_il_mio_fotoalbum.Controllers
         }
 
         // GET: PictureController/Delete/5
+        [Authorize(Roles = "ADMIN")]
         public ActionResult Delete(int id)
         {
             try

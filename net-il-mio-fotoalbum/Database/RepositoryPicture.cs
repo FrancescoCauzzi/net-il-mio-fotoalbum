@@ -92,6 +92,10 @@ namespace net_il_mio_fotoalbum.Database
         public Picture GetEntityById(int id)
         {
             Picture? picture = _db.Pictures.Where(Picture => Picture.Id == id).Include(Picture => Picture.Categories).FirstOrDefault();
+            if(picture == null)
+            {
+                throw new Exception("This picture could not be found");
+            }
             return picture;
         }
 

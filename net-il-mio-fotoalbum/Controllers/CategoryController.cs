@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using net_il_mio_fotoalbum.Database;
 using net_il_mio_fotoalbum.Models.DatabaseModels;
 using net_il_mio_fotoalbum.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace net_il_mio_fotoalbum.Controllers
 {
+    [Authorize(Roles = "ADMIN,USER")]
     public class CategoryController : Controller
     {
         
@@ -37,6 +39,7 @@ namespace net_il_mio_fotoalbum.Controllers
         }
 
         // POST: CategoryController/Create
+        [Authorize(Roles = "ADMIN")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(CategoryFormModel formModel)
@@ -89,6 +92,7 @@ namespace net_il_mio_fotoalbum.Controllers
         }
 
         // GET: CategoryController/Delete/5
+        [Authorize(Roles = "ADMIN")]
         public ActionResult Delete(int id)
         {
 

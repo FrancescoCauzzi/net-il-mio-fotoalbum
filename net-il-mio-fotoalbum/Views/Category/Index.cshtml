@@ -22,7 +22,12 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
+                    @if (User.IsInRole("ADMIN"))
+                    {
                     <th scope="col">Action</th>
+                        
+                    }
+
 
                     
                 </tr>
@@ -34,6 +39,9 @@
                     <tr>
                         <th scope="row">@count</th>
                         <td>@category.Name</td>
+                        @if (User.IsInRole("ADMIN"))
+                        {
+                            
                         <td>
                             <form asp-controller="Category" asp-action="Delete" asp-route-id="@category.Id" method="post">
                                 @Html.AntiForgeryToken()
@@ -63,6 +71,7 @@
 
                             </form>
                         </td>
+                        }
                     </tr>
                     count++;
                 }
