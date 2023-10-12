@@ -30,11 +30,11 @@
                             <p class="card-text">@picture.Description</p>
                             
                             <div class="__buttons-card-ctn d-flex gap-4 justify-content-center">
-                                <a href="@Url.Action("Details", "picture", new { name = picture.Name })" class="btn btn-primary">Details</a>
+                                <a href="@Url.Action("Details", "Picture", new { id = picture.Id })" class="btn btn-primary">Details</a>
                                 @if (User.IsInRole("ADMIN"))
                                 {
 
-                                    <a href="@Url.Action("Update", "picture", new { name = picture.Name })" class="btn btn-primary">Edit</a>
+                                    <a href="@Url.Action("Update", "Picture", new { name = picture.Name })" class="btn btn-primary">Edit</a>
 
                                     @*Delete form
 
@@ -56,6 +56,9 @@
 
             </div>
         }
+        <div class="__picture-index-go-back-button">
+            <a href="@Url.Action("Index","Home")" class="btn btn-primary">Go back to the homepage</a>
+        </div>
 
 
 

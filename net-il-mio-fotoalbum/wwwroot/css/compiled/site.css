@@ -24,6 +24,40 @@ html body main {
   padding-top: 60px;
   padding-bottom: 60px;
 }
+html body main .__picture-index .__picture-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+html body main .__picture-index .__picture-container .__picture-card {
+  min-width: 250px;
+  width: calc(20% - 12.5px);
+}
+html body main .__picture-index .__picture-container .__picture-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+html body main .__picture-index .__picture-index-go-back-button {
+  padding-top: 10px;
+}
+html body main .__picture-details-ctn .__picture-details-card {
+  width: 500px;
+  min-width: 250px;
+  position: relative;
+}
+html body main .__picture-details-ctn .__picture-details-card .__image-det-ctn {
+  width: 100%;
+}
+html body main .__picture-details-ctn .__picture-details-card .__written-details {
+  width: 100%;
+  font-weight: 600;
+}
+html body main .__picture-details-ctn .__detail-btn-ctn {
+  position: absolute;
+  top: 2px;
+  right: 4px;
+}
 html body footer {
   height: 60px;
   position: fixed;
@@ -31,5 +65,5 @@ html body footer {
   width: 100%;
   z-index: 2;
   white-space: nowrap;
-  background-color: black;
+  background-color: white;
 }

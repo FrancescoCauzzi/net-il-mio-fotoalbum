@@ -31,7 +31,20 @@ namespace net_il_mio_fotoalbum.Controllers
         // GET: PictureController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            Picture? foundedPicture = _repositoryPicture.GetEntityById(id);
+
+            if(foundedPicture == null)
+            {
+                var errorModel = new ErrorViewModel
+                {
+                    ErrorMessage = $"The item with id:{id} was not found!",
+                    RequestId = HttpContext.TraceIdentifier
+                };
+                return View("Error", errorModel);
+            }
+
+            return View("Details",foundedPicture);
+
         }
 
         // GET: PictureController/Create
@@ -223,7 +236,7 @@ namespace net_il_mio_fotoalbum.Controllers
                     string message = "There was a problem in updating the picture";
                     var errorModel = new ErrorViewModel
                     {
-                        //ErrorMessage = $"An error occurred: {ex.Message}",
+                        
                         ErrorMessage = message,
                         RequestId = HttpContext.TraceIdentifier
                     };
@@ -252,7 +265,41 @@ namespace net_il_mio_fotoalbum.Controllers
         // GET: PictureController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            try
+            {
+                bool result = _repositoryPicture.DeleteEntity(id);
+                if (!result)
+                {
+                    string message = "There was a problem in deleting the picture";
+                    var errorModel = new ErrorViewModel
+                    {
+
+                        ErrorMessage = message,
+                        RequestId = HttpContext.TraceIdentifier
+                    };
+                    return View("Error", errorModel);
+                }
+
+                return RedirectToAction("Index");
+
+            }
+            catch(Exception ex ) {
+                string innerException = "";
+                if (ex.InnerException != null)
+                {
+                    innerException = ex.InnerException.ToString();
+                }
+                var errorModel = new ErrorViewModel
+                {
+                    ErrorMessage = $"{ex.Message}: {innerException}",
+                    RequestId = HttpContext.TraceIdentifier
+                };
+                return View("Error", errorModel);
+
+            }
+            
+
+            
         }
 
         // POST: PictureController/Delete/5

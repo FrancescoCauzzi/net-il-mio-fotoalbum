@@ -77,13 +77,22 @@ namespace net_il_mio_fotoalbum.Database
 
         public bool DeleteEntity(int id)
         {
-            throw new NotImplementedException();
-        }
+
+            Picture? pictureToDelete = _db.Pictures.Where(p => p.Id == id).FirstOrDefault();
+
+            if(pictureToDelete == null)
+            {
+                return false;
+            }
+            _db.Pictures.Remove(pictureToDelete);
+            _db.SaveChanges();
+            return true;
+    }
 
         public Picture GetEntityById(int id)
         {
-            Picture? pictureToUpdate = _db.Pictures.Where(Picture => Picture.Id == id).Include(Picture => Picture.Categories).FirstOrDefault();
-            return pictureToUpdate;
+            Picture? picture = _db.Pictures.Where(Picture => Picture.Id == id).Include(Picture => Picture.Categories).FirstOrDefault();
+            return picture;
         }
 
         public List<Picture> GetEntities(string title)
