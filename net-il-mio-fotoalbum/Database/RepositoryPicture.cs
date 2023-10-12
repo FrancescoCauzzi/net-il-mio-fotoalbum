@@ -99,9 +99,12 @@ namespace net_il_mio_fotoalbum.Database
             return picture;
         }
 
-        public List<Picture> GetEntities(string title)
+        public List<Picture> GetEntities(string name)
         {
-            throw new NotImplementedException();
+            List<Picture> foundPizzas = _db.Pictures
+                 .Where(pizza => pizza.Name.ToLower().Contains(name.ToLower()))
+                 .ToList();
+            return foundPizzas;
         }
 
         public bool ModifyEntity(int id, PictureFormModel formModel)
@@ -143,11 +146,9 @@ namespace net_il_mio_fotoalbum.Database
 
             return true;
 
-        }
+        }       
 
-        
-
-        List<Picture> IRepository<Picture, PictureFormModel>.GetAll()
+        public List<Picture> GetAll()
         {
             return _db.Pictures.ToList();
         }

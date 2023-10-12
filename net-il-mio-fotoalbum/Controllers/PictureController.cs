@@ -25,8 +25,21 @@ namespace net_il_mio_fotoalbum.Controllers
         // GET: PictureController
         public ActionResult Index()
         {
-            List<Picture> pictures = _repositoryPicture.GetAll();
-            return View("Index",pictures);
+            try
+            {
+                List<Picture> pictures = _repositoryPicture.GetAll();
+                return View("Index",pictures);
+
+            }
+            catch (Exception ex)
+            {
+                var response = new
+                {
+                    success = false,
+                    message = ex.Message
+                };
+                return BadRequest(response);
+            }
         }
 
         // GET: PictureController/Details/5
