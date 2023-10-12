@@ -20,15 +20,17 @@ namespace net_il_mio_fotoalbum.Models.DatabaseModels
         [Required(ErrorMessage = "This field is mandatory")]
         public bool IsVisible { get; set; }
 
-        // image to upload
-        [Required(ErrorMessage = "This field is mandatory")]
-        public byte[] ImageFile { get; set; }
+        
+
+        public byte[]? ImageFile { get; set; }
 
         // MIME type of the image so the user can upload many types of images
         
-        public string MimeType { get; set; }
+        public string? MimeType { get; set; }
 
-        public string ImageSrc => $"data:{MimeType};base64,{Convert.ToBase64String(ImageFile)}";
+        
+        public string ImageSrc => ImageFile == null ? "" : $"data:{MimeType};base64,{Convert.ToBase64String(ImageFile)}";
+
 
 
         // relation N:N with Category

@@ -1,4 +1,5 @@
-﻿using net_il_mio_fotoalbum.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using net_il_mio_fotoalbum.Models;
 using net_il_mio_fotoalbum.Models.DatabaseModels;
 
 
@@ -81,7 +82,8 @@ namespace net_il_mio_fotoalbum.Database
 
         public Picture GetEntityById(int id)
         {
-            throw new NotImplementedException();
+            Picture? pictureToUpdate = _db.Pictures.Where(Picture => Picture.Id == id).Include(Picture => Picture.Categories).FirstOrDefault();
+            return pictureToUpdate;
         }
 
         public List<Picture> GetEntities(string title)
@@ -91,8 +93,46 @@ namespace net_il_mio_fotoalbum.Database
 
         public bool ModifyEntity(int id, PictureFormModel formModel)
         {
-            throw new NotImplementedException();
+            Picture? pictureToUpdate = _db.Pictures.Where(Picture => Picture.Id == id).Include(Picture => Picture.Categories).FirstOrDefault();
+            if(pictureToUpdate == null)
+            {
+                return false;
+            }
+            else
+            {
+
+                    pictureToUpdate.Categories.Clear();
+                    pictureToUpdate.Name = formModel.Picture.Name;
+                    pictureToUpdate.Description = formModel.Picture.Description;
+                    pictureToUpdate.IsVisible = formModel.Picture.IsVisible;
+                    pictureToUpdate.ImageFile = GetImageFileFromFormFile(formModel.ImageFormFile);
+                    pictureToUpdate.MimeType = formModel.ImageFormFile.ContentType;
+                
+                foreach (string CategorieselectedId in formModel.SelectedCategoriesId)
+                {
+                    // down here I need to transform the string into an integer because the database stores the id as an integer but the form send it as a string
+                    int intCategorieselectedId = int.Parse(CategorieselectedId);
+                    // down here I get the Category from the database matching the id of the selected Category
+                    Category? CategoryInDb = _db.Categories.Where(Category => Category.Id == intCategorieselectedId).FirstOrDefault();
+                    //Category? CategoryInDb = _db.Categories.SingleOrDefault(Category => Category.Id == intCategorieselectedId);
+
+                    // after a control for null value I add it to the list of Categories of the Picture
+                    if (CategoryInDb != null)
+                    {
+                        pictureToUpdate.Categories.Add(CategoryInDb);
+                    }
+                }
+            }           
+
+            
+            _db.SaveChanges();
+
+
+            return true;
+
         }
+
+        
 
         List<Picture> IRepository<Picture, PictureFormModel>.GetAll()
         {

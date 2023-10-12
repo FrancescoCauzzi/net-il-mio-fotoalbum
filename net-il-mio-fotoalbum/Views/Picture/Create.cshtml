@@ -7,7 +7,7 @@
 <div class="__create-form-ctn">
     <div class="__post-form-ctn d-flex flex-column">
         <h1>Insert a new picture</h1>
-        <form asp-controller="Picture" asp-action="Create" method="post">
+        <form asp-controller="Picture" asp-action="Create" enctype="multipart/form-data" method="post">
             @await Html.PartialAsync("InnerFormCreateUpdate")
 
         </form>

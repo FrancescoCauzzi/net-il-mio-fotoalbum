@@ -1,0 +1,23 @@
+﻿@using net_il_mio_fotoalbum.Models
+@{
+
+    @model PictureFormModel
+    ViewData["Title"] = $"Update {@Model.Picture.Name}";
+
+}
+
+<div class="__update-form-ctn">
+    <div class="__post-form-ctn d-flex flex-column">
+        <h1>Edit @Model.Picture.Name</h1>
+
+        <form asp-controller="Picture" asp-action="Update" enctype="multipart/form-data" asp-route-id="@Model.Picture.Id" method="post">
+            @* common part *@
+            @await Html.PartialAsync("InnerFormCreateUpdate")
+
+        </form>
+        @*
+        *@
+        @await Html.PartialAsync("GoBackButtons")
+
+    </div>
+</div>

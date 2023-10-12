@@ -14,13 +14,13 @@
     <span asp-validation-for="Picture.Description" class="text-danger"></span>
 </div>
 <div class="mb-3">
-    <label asp-for="ImageFormFile">Image file</label>
-    <input type="file" asp-for="ImageFormFile" />
-    <span asp-validation-for="ImageFormFile" class="text-error"></span>
+    <label asp-for="ImageFormFile"><strong>ImageFile:</strong></label>
+    <input type="file" asp-for="ImageFormFile" class="d-block w-100" />
+    <span asp-validation-for="ImageFormFile" class="text-danger"></span>
 </div>
 <div class="form-check mb-3">
     <input type="checkbox" asp-for="Picture.IsVisible" class="form-check-input" id="isVisibleCheckbox">
-    <label class="form-check-label" for="isVisibleCheckbox"><strong>IsVisible</strong></label>
+    <label class="form-check-label" for="isVisibleCheckbox"><strong>Is Visible</strong></label>
     <span asp-validation-for="Picture.IsVisible" class="text-danger"></span>
 </div>
 

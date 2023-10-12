@@ -9,7 +9,7 @@ namespace net_il_mio_fotoalbum.Models
     {
         public Picture Picture { get; set; }
 
-        public IFormFile ImageFormFile { get; set; }
+        public IFormFile? ImageFormFile { get; set; }
 
         // We insert new properties to manage the selection in the views
         public List<SelectListItem>? Categories { get; set; }

@@ -1,27 +1,35 @@
 html {
   font-size: 14px;
+  position: relative;
+  min-height: 100%;
+  z-index: 0;
 }
-
 @media (min-width: 768px) {
   html {
     font-size: 16px;
   }
 }
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
+html body {
   margin-bottom: 60px;
 }
-body header {
+html body header {
   height: 60px;
+  position: fixed;
+  z-index: 2;
+  width: 100%;
 }
-body main {
+html body main {
   background-color: gray;
-  height: calc(100vh - 110px);
+  min-height: calc(100vh - (60px));
+  padding-top: 60px;
+  padding-bottom: 60px;
 }
-body footer {
-  height: 50px;
+html body footer {
+  height: 60px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 2;
+  white-space: nowrap;
+  background-color: black;
 }

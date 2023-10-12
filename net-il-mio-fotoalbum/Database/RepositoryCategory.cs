@@ -33,7 +33,16 @@ namespace net_il_mio_fotoalbum.Database
 
         public Category GetEntityById(int id)
         {
-            throw new NotImplementedException();
+            Category? category = _db.Categories.Where(c => c.Id == id).FirstOrDefault();
+            if (category != null)
+            {
+                return category;
+
+            }
+            else
+            {
+                throw new Exception("This pizza has not been found");
+            }
         }
 
         public bool ModifyEntity(int id, CategoryFormModel formModel)

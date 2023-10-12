@@ -1,33 +1,43 @@
 html {
-  font-size: 14px;
-}
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
+    z-index: 0;
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-    margin-bottom: 60px;
-    $header-height: 60px;
-    $footer-height: 50px;
-
-    header {
-        height: $header-height;
+    @media (min-width: 768px) {
+        font-size: 16px;
     }
 
-    main {
-        background-color: gray;
-        height: calc(100vh - ($header-height + $footer-height));
-    }
+    body {
+        margin-bottom: 60px;
+        $header-height: 60px;
+        $footer-height: 50px;
 
-    footer {
-        height: $footer-height;
+
+        header {
+            height: $header-height;
+            position: fixed;
+            z-index: 2;
+            width: 100%;
+        }
+
+        main {
+            background-color: gray;
+            //min-height: 100vh;
+            min-height: calc(100vh - (#{$header-height} )); 
+            padding-top: $header-height; // Use the variable
+            padding-bottom: $header-height; // Use the variable
+        }
+
+        footer {
+            height: $header-height;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            z-index: 2;
+            white-space: nowrap;
+            //line-height: 60px;
+            background-color: black;
+        }
     }
 }
