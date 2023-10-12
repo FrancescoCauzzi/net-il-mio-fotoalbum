@@ -1,0 +1,32 @@
+﻿@using net_il_mio_fotoalbum.Models
+@model CategoryFormModel
+
+<div class="__category-create-ctn ">
+    <div class="__post-form-ctn d-flex flex-column">
+    <h1>Insert a new category</h1>
+    <form asp-controller="Category" asp-action="Create" method="post">
+        @Html.AntiForgeryToken()
+        <div class="mb-3">
+            <label for="Name"><strong>Name:</strong></label>
+            <input asp-for="Category.Name" class="d-block w-100" />
+            <span asp-validation-for="Category.Name" class="text-danger"></span>
+        </div>
+        @* @await Html.PartialAsync("InnerFormCreateUpdate") *@
+            <div class="text-end">
+                <input type="submit" class="btn btn-small btn-info" value="Save">
+            </div>
+
+    </form>
+
+        @* common part 
+
+    @await Html.PartialAsync("GoBackButtons")
+
+        *@
+        
+        
+
+
+</div>
+
+</div>

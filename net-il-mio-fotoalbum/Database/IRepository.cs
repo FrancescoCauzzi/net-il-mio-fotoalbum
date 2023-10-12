@@ -30,6 +30,7 @@ namespace net_il_mio_fotoalbum.Database
         // Add a new entity (with validation)
         bool AddEntity(TFormModel formModel);
         // Modify an existing entity (with validation)
+        
         bool ModifyEntity(int id, TFormModel formModel);
         // Delete an entity
         bool DeleteEntity(int id);

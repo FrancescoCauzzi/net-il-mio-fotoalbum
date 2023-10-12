@@ -22,6 +22,8 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
+                    <th scope="col">Action</th>
+
                     
                 </tr>
             </thead>
@@ -31,7 +33,36 @@
                     
                     <tr>
                         <th scope="row">@count</th>
-                        <td>@category.Name</td>                    
+                        <td>@category.Name</td>
+                        <td>
+                            <form asp-controller="Category" asp-action="Delete" asp-route-id="@category.Id" method="post">
+                                @Html.AntiForgeryToken()
+
+                                <button id="__delete-icon" type="button" class="btn btn-danger p-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop-@category.Id">
+                                    <i class="fas fa-trash-can">
+                                    </i>
+                                </button>
+                                @*Bootstrap Modal*@
+                                <div class="modal fade" id="staticBackdrop-@category.Id" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header ">
+                                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Delete confirmation</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Are you sure that you want to delete the category: '@category.Name' ?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </td>
                     </tr>
                     count++;
                 }

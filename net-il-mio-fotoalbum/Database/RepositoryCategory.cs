@@ -1,5 +1,6 @@
 ﻿using net_il_mio_fotoalbum.Models.DatabaseModels;
 using net_il_mio_fotoalbum.Models;
+using Microsoft.AspNetCore.Routing.Tree;
 
 namespace net_il_mio_fotoalbum.Database
 {
@@ -13,12 +14,33 @@ namespace net_il_mio_fotoalbum.Database
         }
         public bool AddEntity(CategoryFormModel formModel)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Category newCategory = new()
+                {
+                    Name = formModel.Category.Name
+                };
+                _db.Categories.Add(newCategory);
+                _db.SaveChanges();
+
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
         public bool DeleteEntity(int id)
         {
-            throw new NotImplementedException();
+            Category? categoryToDelete = _db.Categories.Where(c => c.Id == id).FirstOrDefault();
+            if (categoryToDelete == null) { 
+                return false;            
+            }
+            _db.Categories.Remove(categoryToDelete);
+            _db.SaveChanges();
+            return true;
         }
 
         public List<Category> GetAll()
