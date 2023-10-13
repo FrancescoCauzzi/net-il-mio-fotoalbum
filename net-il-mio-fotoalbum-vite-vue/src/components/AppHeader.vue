@@ -9,7 +9,9 @@ export default {
 </script>
 
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light px-3">
+  <nav
+    class="navbar navbar-expand-lg navbar-light bg-light px-3 align-items-center"
+  >
     <router-link class="navbar-brand" :to="{ name: 'home' }"
       >Photo Album
     </router-link>

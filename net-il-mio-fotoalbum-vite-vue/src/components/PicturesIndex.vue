@@ -91,13 +91,30 @@ export default {
       <div v-if="picturesFound" class="text-center">
         <h1>These are our pictures</h1>
         <div class="__cards-ctn justify-content-center">
-          <div v-for="picture in pictures" class="card __card">
+          <div
+            v-for="picture in pictures"
+            class="card __card"
+            :class="picture.isVisible ? 'd-block' : 'd-none'"
+          >
             <img :src="picture.imageSrc" class="card-img-top" alt="image" />
             <div class="card-body">
               <h5 class="card-title">{{ picture.name }}</h5>
               <p class="card-text">
                 {{ picture.description }}
               </p>
+              <div
+                class="d-flex"
+                v-if="
+                  (picture.categories != null) & (picture.categories.length > 0)
+                "
+              >
+                <h6>
+                  Categor{{ picture.categories.length === 1 ? "y" : "ies" }}:
+                </h6>
+                <ul v-for="category in picture.categories">
+                  <li style="list-style: none">{{ category.name }}</li>
+                </ul>
+              </div>
               <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
             </div>
           </div>

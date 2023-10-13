@@ -21,7 +21,7 @@ export default {
     <AppHeader></AppHeader>
   </header>
   <main>
-    <div class="__main-sub-ctn container py-2">
+    <div class="__main-sub-ctn container py-3">
       <router-view></router-view>
     </div>
   </main>

@@ -16,29 +16,40 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto gap-2">
-            
-            
+
+            @if(User.IsInRole("ADMIN") || User.IsInRole("USER"))
+            {
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle"
-                   href="#"
-                   id="navbarDropdown"
-                   role="button"
-                   data-bs-toggle="dropdown"
-                   aria-haspopup="true"
-                   aria-expanded="false">
-                    My Pictures
+                    href="#"
+                    id="navbarDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false">
+                    Actions
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="@Url.Action("Index","Picture")">See all pictures</a>
+                    <a class="dropdown-item" href="@Url.Action("Index","Picture")">See all pictures</a>
                     <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="@Url.Action("Create","Picture")">Add a picture</a>
+                            @if (User.IsInRole("ADMIN"))
+                            {
+                    <a class="dropdown-item" href="@Url.Action("Create","Picture")">Add a picture</a>
+                                
                     <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="@Url.Action("Index","Category")">See all categories</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="@Url.Action("Create","Category")">Add a category</a>
-                        <div class="dropdown-divider"></div>                    
-                </div>
+                            }
+
+                    <a class="dropdown-item" href="@Url.Action("Index","Category")">See all categories</a>
+                    <div class="dropdown-divider"></div>
+                    @if (User.IsInRole("ADMIN"))
+                    {                           
+                    <a class="dropdown-item" href="@Url.Action("Create","Category")">Add a category</a>
+                    <div class="dropdown-divider"></div>
+                     }
+                </div>                    
             </li>
+                }
+                
             @*Authentication*@
             <li>
                 <partial name="_LoginPartial" />

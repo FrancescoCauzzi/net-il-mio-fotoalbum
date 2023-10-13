@@ -102,7 +102,7 @@ namespace net_il_mio_fotoalbum.Database
         public List<Picture> GetEntities(string name)
         {
             List<Picture> foundPictures = _db.Pictures
-                 .Where(p => p.Name.ToLower().Contains(name.ToLower()))
+                 .Where(p => p.Name.ToLower().Contains(name.ToLower())).Include(p => p.Categories)
                  .ToList();
             return foundPictures;
         }
@@ -150,7 +150,7 @@ namespace net_il_mio_fotoalbum.Database
 
         public List<Picture> GetAll()
         {
-            return _db.Pictures.ToList();
+            return _db.Pictures.Include(p => p.Categories).ToList();
         }
 
         public bool AddEntity(Picture entity)
