@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
 using net_il_mio_fotoalbum.Database;
 using net_il_mio_fotoalbum.Models.DatabaseModels;
+using net_il_mio_fotoalbum.Models;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace net_il_mio_fotoalbum.Controllers.API
 {
@@ -14,111 +11,42 @@ namespace net_il_mio_fotoalbum.Controllers.API
     [ApiController]
     public class ContactsController : ControllerBase
     {
-        private readonly FotoAlbumContext _context;
+        private IRepository<Contact, ContactFormModel> _repositoryContact;
 
-        public ContactsController(FotoAlbumContext context)
+        public ContactsController(IRepository<Contact, ContactFormModel> repositoryContact)
         {
-            _context = context;
+            _repositoryContact = repositoryContact;
         }
-
-        // GET: api/Contacts
+        // GET: api/<ContactsController>
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Contact>>> GetContacts()
+        public IEnumerable<string> Get()
         {
-          if (_context.Contacts == null)
-          {
-              return NotFound();
-          }
-            return await _context.Contacts.ToListAsync();
+            return new string[] { "value1", "value2" };
         }
 
-        // GET: api/Contacts/5
+        // GET api/<ContactsController>/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Contact>> GetContact(int id)
+        public string Get(int id)
         {
-          if (_context.Contacts == null)
-          {
-              return NotFound();
-          }
-            var contact = await _context.Contacts.FindAsync(id);
-
-            if (contact == null)
-            {
-                return NotFound();
-            }
-
-            return contact;
+            return "value";
         }
 
-        // PUT: api/Contacts/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutContact(int id, Contact contact)
-        {
-            if (id != contact.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(contact).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ContactExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/Contacts
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        // POST api/<ContactsController>
         [HttpPost]
-        public async Task<ActionResult<Contact>> PostContact(Contact contact)
+        public void Post([FromBody] string value)
         {
-          if (_context.Contacts == null)
-          {
-              return Problem("Entity set 'FotoAlbumContext.Contacts'  is null.");
-          }
-            _context.Contacts.Add(contact);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetContact", new { id = contact.Id }, contact);
         }
 
-        // DELETE: api/Contacts/5
+        // PUT api/<ContactsController>/5
+        [HttpPut("{id}")]
+        public void Put(int id, [FromBody] string value)
+        {
+        }
+
+        // DELETE api/<ContactsController>/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteContact(int id)
+        public void Delete(int id)
         {
-            if (_context.Contacts == null)
-            {
-                return NotFound();
-            }
-            var contact = await _context.Contacts.FindAsync(id);
-            if (contact == null)
-            {
-                return NotFound();
-            }
-
-            _context.Contacts.Remove(contact);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-        private bool ContactExists(int id)
-        {
-            return (_context.Contacts?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

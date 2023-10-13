@@ -152,5 +152,10 @@ namespace net_il_mio_fotoalbum.Database
         {
             return _db.Pictures.ToList();
         }
+
+        public bool AddEntity(Picture entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

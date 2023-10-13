@@ -29,6 +29,8 @@ namespace net_il_mio_fotoalbum.Database
         T GetEntityById(int id);
         // Add a new entity (with validation)
         bool AddEntity(TFormModel formModel);
+
+        bool AddEntity(T entity);
         // Modify an existing entity (with validation)
         
         bool ModifyEntity(int id, TFormModel formModel);

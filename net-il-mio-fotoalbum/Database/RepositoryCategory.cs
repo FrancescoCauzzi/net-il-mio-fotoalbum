@@ -71,5 +71,10 @@ namespace net_il_mio_fotoalbum.Database
         {
             throw new NotImplementedException();
         }
+
+        public bool AddEntity(Category entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

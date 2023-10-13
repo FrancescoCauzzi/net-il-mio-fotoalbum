@@ -31,10 +31,14 @@ namespace net_il_mio_fotoalbum
             // DI for the database
             builder.Services.AddScoped<FotoAlbumContext, FotoAlbumContext>();
 
-            // DI repository pattern
+            // DI repository pattern Picture
             builder.Services.AddScoped<IRepository<Picture, PictureFormModel>, RepositoryPicture>();
-            // DI repository pattern
+            // DI repository pattern Category
             builder.Services.AddScoped<IRepository<Category, CategoryFormModel>, RepositoryCategory>();
+            // DI repository pattern Contact
+            builder.Services.AddScoped<IRepository<Contact, ContactFormModel>, RepositoryContact>();
+
+
 
             // Add CORS policy to avoid error messages in cross-origin requests when communicating with a front-end app
             builder.Services.AddCors(options =>
