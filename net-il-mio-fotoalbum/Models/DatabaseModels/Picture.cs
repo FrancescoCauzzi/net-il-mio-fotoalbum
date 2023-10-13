@@ -19,7 +19,6 @@ namespace net_il_mio_fotoalbum.Models.DatabaseModels
 
         [Required(ErrorMessage = "This field is mandatory")]
         public bool IsVisible { get; set; }
-
         
 
         public byte[]? ImageFile { get; set; }

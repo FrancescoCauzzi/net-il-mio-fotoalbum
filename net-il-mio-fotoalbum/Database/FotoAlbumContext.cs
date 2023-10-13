@@ -16,5 +16,7 @@ namespace net_il_mio_fotoalbum.Database
         public DbSet<Picture> Pictures { get; set; }
 
         public DbSet<Category> Categories { get; set; }
+
+        public DbSet<Contact> Contacts { get; set; }
     }
 }
