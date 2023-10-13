@@ -36,9 +36,15 @@ namespace net_il_mio_fotoalbum
             // DI repository pattern
             builder.Services.AddScoped<IRepository<Category, CategoryFormModel>, RepositoryCategory>();
 
-
-
-
+            // Add CORS policy to avoid error messages in cross-origin requests when communicating with a front-end app
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowSpecificOrigin",
+                    builder => builder.WithOrigins("http://localhost:5173")
+                                      .AllowAnyHeader()
+                                      .AllowAnyMethod()
+                                      );
+            });
 
             // DEPENDENCY INJECTIONS Above
 
@@ -68,6 +74,10 @@ namespace net_il_mio_fotoalbum
 
             // configure the routing system to be aware of and handle Razor Pages. Razor Pages is a feature of ASP.NET Core that makes coding page-focused scenarios easier and more productive.
             app.MapRazorPages();
+
+            // Apply the CORS policy
+            app.UseCors("AllowSpecificOrigin");
+
 
             app.Run();
         }

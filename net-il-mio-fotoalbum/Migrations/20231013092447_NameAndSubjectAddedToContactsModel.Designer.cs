@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using net_il_mio_fotoalbum.Database;
 
@@ -11,9 +12,11 @@ using net_il_mio_fotoalbum.Database;
 namespace net_il_mio_fotoalbum.Migrations
 {
     [DbContext(typeof(FotoAlbumContext))]
-    partial class FotoAlbumContextModelSnapshot : ModelSnapshot
+    [Migration("20231013092447_NameAndSubjectAddedToContactsModel")]
+    partial class NameAndSubjectAddedToContactsModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -277,8 +280,8 @@ namespace net_il_mio_fotoalbum.Migrations
 
                     b.Property<string>("Subject")
                         .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 

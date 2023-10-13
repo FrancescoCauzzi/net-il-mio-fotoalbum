@@ -26,8 +26,27 @@ namespace net_il_mio_fotoalbum.Controllers.API
         [HttpGet]
         public IActionResult GetAllPictures()
         {
-            List<Picture> pictureList = _repositoryPicture.GetAll();
-            return Ok(pictureList);
+            try
+            {
+
+                List<Picture> Pictures = _repositoryPicture.GetAll();
+                var response = new
+                {
+                    success = true,
+                    PictureList = Pictures
+                };
+                return Ok(response);
+
+            }
+            catch (Exception ex)
+            {
+                var response = new
+                {
+                    success = false,
+                    message = ex.Message
+                };
+                return BadRequest(response);
+            }
         }
 
         // GET api/<PicturesController>/5
@@ -49,17 +68,37 @@ namespace net_il_mio_fotoalbum.Controllers.API
         [HttpGet]
         public IActionResult SearchPictures(string? search)
         {
-            List<Picture> foundedPictures = new List<Picture>();
-            if (search == null)
+            try
             {
-                foundedPictures = _repositoryPicture.GetAll();
-            }
-            else
-            {
-                foundedPictures = _repositoryPicture.GetEntities(search);
-            }
+                List<Picture> foundedPictures = new List<Picture>();
+                if (search == null)
+                {
+                    foundedPictures = _repositoryPicture.GetAll();
+                }
+                else
+                {
+                    foundedPictures = _repositoryPicture.GetEntities(search);
+                }
 
-            return Ok(foundedPictures);
+                var response = new
+                {
+                    success = true,
+                    PictureList = foundedPictures
+                };
+                return Ok(response);
+
+            }
+            catch(Exception ex) 
+            {
+                var response = new
+                {
+                    success = false,
+                    message = ex.Message
+                };
+                return BadRequest(response);
+
+            }
+            
 
         }
 

@@ -101,10 +101,10 @@ namespace net_il_mio_fotoalbum.Database
 
         public List<Picture> GetEntities(string name)
         {
-            List<Picture> foundPizzas = _db.Pictures
-                 .Where(pizza => pizza.Name.ToLower().Contains(name.ToLower()))
+            List<Picture> foundPictures = _db.Pictures
+                 .Where(p => p.Name.ToLower().Contains(name.ToLower()))
                  .ToList();
-            return foundPizzas;
+            return foundPictures;
         }
 
         public bool ModifyEntity(int id, PictureFormModel formModel)
