@@ -10,7 +10,9 @@ export default {
 
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light px-3">
-    <a class="navbar-brand" href="#">Photo Album</a>
+    <router-link class="navbar-brand" :to="{ name: 'home' }"
+      >Photo Album
+    </router-link>
     <button
       class="navbar-toggler"
       type="button"
@@ -24,9 +26,11 @@ export default {
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
+      <ul class="navbar-nav mr-auto align-items-center">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Our-Pictures</a>
+          <router-link class="nav-link" :to="{ name: 'home' }"
+            >Homepage
+          </router-link>
         </li>
         <li class="nav-item dropdown">
           <a
@@ -38,14 +42,17 @@ export default {
             aria-haspopup="true"
             aria-expanded="false"
           >
-            Dropdown
+            Get in touch with us
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
+            <router-link class="nav-link" :to="{ name: 'contacts' }"
+              >Contact us
+            </router-link>
+            <!-- 
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">Another action</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
+            <a class="dropdown-item" href="#">Something else here</a> -->
           </div>
         </li>
       </ul>

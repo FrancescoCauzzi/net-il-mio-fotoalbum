@@ -33,11 +33,29 @@ namespace net_il_mio_fotoalbum.Controllers.API
 
         // POST api/<ContactsController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] Contact newContact)
         {
+            try
+            {
+                bool result = _repositoryContact.AddEntity(newContact);
+                if (result)
+                {
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest("Unable to add contact");
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = "An error occurred while processing your request." });
+
+            }
         }
 
-        // PUT api/<ContactsController>/5
+        // PUT api/<ContactsController>/5 __MOdify
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {

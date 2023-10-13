@@ -1,5 +1,5 @@
 <script>
-import Index from "./components/Index.vue";
+//import Index from "./components/PicturesIndex.vue";
 import AppHeader from "./components/AppHeader.vue";
 import AppFooter from "./components/AppFooter.vue";
 
@@ -10,7 +10,6 @@ export default {
   },
 
   components: {
-    Index,
     AppHeader,
     AppFooter,
   },
@@ -23,7 +22,7 @@ export default {
   </header>
   <main>
     <div class="__main-sub-ctn container py-2">
-      <Index></Index>
+      <router-view></router-view>
     </div>
   </main>
   <footer>

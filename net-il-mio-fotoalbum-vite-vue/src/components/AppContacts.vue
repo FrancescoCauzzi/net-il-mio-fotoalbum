@@ -1,13 +1,30 @@
 <script>
+import axios from "axios";
+import SuccessAlert from "./SuccessAlert.vue";
+
 export default {
   name: "AppContacts",
   data() {
-    return {};
+    return {
+      formData: {
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      },
+      // Message Alert
+      showMessageAlert: false,
+      errorMessage: "",
+      errorMessageFound: false,
+    };
+  },
+  components: {
+    SuccessAlert,
   },
   methods: {
     sendMessage() {
       axios
-        .post("http://127.0.0.1:8000/api/messages", this.formData)
+        .post("https://localhost:7056/api/Contacts", this.formData)
         .then((response) => {
           //this.formData.userId = "";
           this.formData.name = "";
@@ -53,12 +70,13 @@ export default {
 </script>
 
 <template>
+  <h1>Contact section</h1>
   <h5>Send us a message, we'll get back to you as soon as possible:</h5>
 
   <form action="" method="POST" @submit.prevent="sendMessage" class="mb-2">
     <div>
       <label for="name" class="col-md-4 col-form-label text-md-right"
-        >Nome *</label
+        >Name *</label
       >
 
       <div>
@@ -100,7 +118,7 @@ export default {
 
     <div>
       <label for="subject" class="col-md-4 col-form-label text-md-right"
-        >Oggetto del messaggio *</label
+        >Subject *</label
       >
 
       <div>
@@ -121,7 +139,7 @@ export default {
 
     <div>
       <label for="message" class="col-md-4 col-form-label text-md-right"
-        >Messaggio *</label
+        >Messagge *</label
       >
 
       <div class="mb-3">
@@ -142,11 +160,9 @@ export default {
       {{ errorMessage }}
     </div>
 
-    <div class="mb-3 __main-color">
-      I campi contrassegnati con un asterisco sono obbligatori
-    </div>
+    <div class="mb-3 __main-color">Starred * fields are mandatory</div>
 
-    <button class="btn btn-primary" type="submit">Invia messaggio</button>
+    <button class="btn btn-primary" type="submit">Send message</button>
   </form>
   <!-- <div v-if="showAlert" class="alert alert-success" role="alert">
   Operazione conclusa con successo!

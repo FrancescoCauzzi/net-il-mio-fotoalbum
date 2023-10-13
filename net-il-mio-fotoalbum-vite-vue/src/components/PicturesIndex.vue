@@ -73,7 +73,7 @@ export default {
         type="submit"
         @click.prevent="getPicturesByName"
       >
-        Search
+        <strong> Search </strong>
       </button>
     </form>
     <div
