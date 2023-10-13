@@ -1,30 +1,49 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
+<script>
+import Index from "./components/Index.vue";
+import AppHeader from "./components/AppHeader.vue";
+import AppFooter from "./components/AppFooter.vue";
+
+export default {
+  name: "App",
+  data() {
+    return {};
+  },
+
+  components: {
+    Index,
+    AppHeader,
+    AppFooter,
+  },
+};
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+  <header>
+    <AppHeader></AppHeader>
+  </header>
+  <main>
+    <div class="__main-sub-ctn container py-2">
+      <Index></Index>
+    </div>
+  </main>
+  <footer>
+    <AppFooter></AppFooter>
+  </footer>
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+<style lang="scss" scoped>
+$header-height: 60px;
+$footer-height: 50px;
+header {
+  height: $header-height;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+
+main {
+  background-color: gray;
+  height: calc(100vh - ($header-height + $footer-height));
 }
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+
+footer {
+  height: $footer-height;
 }
 </style>
