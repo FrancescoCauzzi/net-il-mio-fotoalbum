@@ -88,7 +88,7 @@ export default {
       </div>
     </div>
     <div v-else>
-      <div v-if="picturesFound" class="text-center">
+      <div v-if="picturesFound & (pictures.length > 0)" class="text-center">
         <h1>These are our pictures</h1>
         <div class="__cards-ctn justify-content-center">
           <div
@@ -112,7 +112,12 @@ export default {
                   Categor{{ picture.categories.length === 1 ? "y" : "ies" }}:
                 </h6>
                 <ul v-for="category in picture.categories">
-                  <li style="list-style: none">{{ category.name }}</li>
+                  <li
+                    class="badge rounded-pill bg-info text-dark"
+                    style="list-style: none"
+                  >
+                    {{ category.name }}
+                  </li>
                 </ul>
               </div>
               <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->

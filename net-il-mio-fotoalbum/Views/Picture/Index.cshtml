@@ -29,15 +29,14 @@
                             @if(picture.Categories != null && picture.Categories.Count != 0)
                             {
                                 <div class="d-flex flex-column align-items-start">
+                                
 
-
-                                    <h6>Categories:</h6>
-                                    @foreach (Category category in picture.Categories)
-                                    {
-                                    <ul>
-                                        <li style="list-style:none;">@category.Name</li>
-                                    </ul>
-                                    }
+                                @foreach (Category category in picture.Categories)
+                                {
+                                <ul>
+                                        <li class="badge rounded-pill bg-info text-dark" style="list-style:none;">@category.Name</li>
+                                </ul>
+                                }
                                 </div>
                             }
 

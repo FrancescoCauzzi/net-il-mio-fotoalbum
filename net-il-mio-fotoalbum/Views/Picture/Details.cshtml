@@ -20,25 +20,31 @@
                 <div>
                     @*categories*@
                     <div class="__details-categories d-flex justify-content-evenly">
-                        <div>
-                            <strong>Categories:</strong>
-
-                        </div>
-                        <div>
-                            @if (Model.Categories != null && Model.Categories.Count > 0)
-                            {
-                                <ul>
-                                    @foreach (Category category in Model.Categories)
+                        @if (Model.Categories != null && Model.Categories.Count > 0){                          
+                            <div>
+                                    @if(Model.Categories.Count == 1)
                                     {
-                                        <li>@category.Name</li>
+                                     <strong>Category:</strong>
+                                    }else{
+                                    <strong>Categories:</strong>
                                     }
-                                </ul>
-                            }
-                            else
-                            {
+                            </div>
+                            <div>
+                                    <ul>
+                                        @foreach (Category category in Model.Categories)
+                                        {
+                                            <li>@category.Name</li>
+                                        }
+                                    </ul>
+                            </div>
+                        }
+                        else
+                        {
+                            <div>
                                 <span>No categories have been associated</span>
-                            }
-                        </div>
+
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
